@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Grade" representedClassName=".Grade" syncable="YES">
+        <attribute name="gradeName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="schoolRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="School" inverseName="gradeRelationShip" inverseEntity="School" syncable="YES"/>
+        <relationship name="sectionRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section" inverseName="gradeRelation" inverseEntity="Section" syncable="YES"/>
+    </entity>
+    <entity name="School" representedClassName=".School" syncable="YES">
+        <attribute name="schoolName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="gradeRelationShip" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Grade" inverseName="schoolRelation" inverseEntity="Grade" syncable="YES"/>
+    </entity>
+    <entity name="Section" representedClassName=".Section" syncable="YES">
+        <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="gradeRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Grade" inverseName="sectionRelation" inverseEntity="Grade" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Grade" positionX="-54" positionY="0" width="128" height="90"/>
+        <element name="School" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Section" positionX="-36" positionY="18" width="128" height="75"/>
+    </elements>
+</model>
