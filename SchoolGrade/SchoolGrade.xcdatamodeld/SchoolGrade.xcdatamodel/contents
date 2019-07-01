@@ -7,7 +7,7 @@
     </entity>
     <entity name="School" representedClassName=".School" syncable="YES">
         <attribute name="schoolName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="gradeRelationShip" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Grade" inverseName="schoolRelation" inverseEntity="Grade" syncable="YES"/>
+        <relationship name="gradeRelationShip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade" inverseName="schoolRelation" inverseEntity="Grade" syncable="YES"/>
     </entity>
     <entity name="Section" representedClassName=".Section" syncable="YES">
         <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>

@@ -67,7 +67,6 @@ class SchoolGradeTableViewController: UITableViewController {
         return tableViewCell ?? UITableViewCell()
     }
     
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "GradeTableViewCell") as? GradeTableViewCell
 
@@ -94,7 +93,8 @@ fileprivate extension SchoolGradeTableViewController {
     
     func configureDataSource() {
         guard let schoolObject = coreDataManager.fetch(School.self), schoolObject.count > 0 else {
-            createSchool()
+           school =  createSchool()
+            
             return
         }
         
@@ -102,10 +102,10 @@ fileprivate extension SchoolGradeTableViewController {
         labelHeader?.text = school?.schoolName ?? ""
     }
     
-    func createSchool() {
+    func createSchool() -> School? {
         let schoolDict = ["Schools": [["name": "ALL", "grades": ["Grade1": ["A", "B"], "Grade2": ["A", "B"]]]]]
         guard let schoolObjects =  schoolDict["Schools"] else {
-            return;
+            return nil;
         }
         let schoolObject = schoolObjects.map { (schoolObject) -> School in
             let school = School(context: coreDataManager.context)
@@ -120,6 +120,7 @@ fileprivate extension SchoolGradeTableViewController {
         }
         print(schoolObject)
         coreDataManager.saveContext()
+        return schoolObject.first
     }
     
     

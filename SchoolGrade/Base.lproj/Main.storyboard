@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="YdM-3g-0F9" customClass="HeaderTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
+                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="YdM-3g-0F9" customClass="HeaderTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YdM-3g-0F9" id="3z0-7s-Tbw">
@@ -36,7 +36,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEO-d8-8hN" userLabel="ButtonSelection">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="actionButtonExpand:" destination="f23-ti-tKZ" eventType="touchUpInside" id="JgO-Pz-bFW"/>
                                                 </connections>
@@ -63,7 +65,6 @@
                                             <constraint firstAttribute="trailing" secondItem="HEO-d8-8hN" secondAttribute="trailing" id="xYS-r4-jQF"/>
                                         </constraints>
                                     </tableViewCellContentView>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <outlet property="labelHeaderName" destination="pzy-aP-jjf" id="sPD-n9-BF1"/>
                                     </connections>
@@ -72,7 +73,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GradeTableViewCell" id="UFO-HP-Kol" userLabel="GradeTableViewCell" customClass="GradeTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GradeTableViewCell" id="UFO-HP-Kol" userLabel="GradeTableViewCell" customClass="GradeTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UFO-HP-Kol" id="e6e-KA-5Sc">
@@ -88,7 +89,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT9-7x-1rb" userLabel="ButtonSelection">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
                                                 <action selector="buttonActionExpand:" destination="UFO-HP-Kol" eventType="touchUpInside" id="kiW-QK-LMy"/>
                                             </connections>
@@ -111,13 +114,12 @@
                                         <constraint firstItem="gx5-RX-d7y" firstAttribute="leading" secondItem="e6e-KA-5Sc" secondAttribute="leading" constant="20" id="NlD-6f-Hl2"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.1843137255" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="buttonTick" destination="gx5-RX-d7y" id="qIj-Mm-iiN"/>
                                     <outlet property="labelHeaderName" destination="YEE-vp-upk" id="zlK-va-8UV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionTableViewCell" id="kxf-pM-d5T" customClass="SectionTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionTableViewCell" id="kxf-pM-d5T" customClass="SectionTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="116" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kxf-pM-d5T" id="n6P-Oh-Cts">
@@ -148,7 +150,6 @@
                                         <constraint firstItem="BPp-M3-JME" firstAttribute="top" secondItem="n6P-Oh-Cts" secondAttribute="top" constant="5" id="iTm-kc-tIj"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.00048388249709999998" green="0.4514250159" blue="0.71052545310000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="buttonTick" destination="vJ0-c0-mBQ" id="jPm-gF-fX0"/>
                                     <outlet property="labelHeaderName" destination="BPp-M3-JME" id="9e5-Jb-Gy9"/>
