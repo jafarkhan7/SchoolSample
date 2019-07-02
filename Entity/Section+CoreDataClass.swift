@@ -13,6 +13,4 @@ import CoreData
 
 public class Section: NSManagedObject, Selectable {
     var isSelected: Bool?
-    
-
 }

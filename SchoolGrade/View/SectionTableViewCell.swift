@@ -15,6 +15,9 @@ class SectionTableViewCell: UITableViewCell {
             configureView()
         }
     }
+    
+    var closureSection:(() -> ())?
+
     @IBOutlet weak var labelHeaderName: UILabel?
     @IBOutlet weak var buttonTick: UIButton?
 
@@ -27,6 +30,7 @@ class SectionTableViewCell: UITableViewCell {
     @IBAction func buttonActionSelected(_ sender: UIButton) {
         section?.isSelected = !(section?.isSelected ?? false)
         buttonTick?.backgroundColor = section?.isSelected ?? false ? .green : .blue
+        closureSection?()
         
     }
     

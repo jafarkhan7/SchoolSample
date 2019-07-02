@@ -9,15 +9,19 @@
 import Foundation
 import UIKit
 
+enum ClosureMode {
+    case expand
+    case select
+}
+
 class GradeTableViewCell: UITableViewCell {
-    
     var grade:Grade? {
         didSet {
             configureView()
         }
     }
-    var closureSection:((Bool) -> ())?
-    
+    var closureGrade:(() -> ())?
+
     
     private func configureView() {
         buttonTick?.backgroundColor = grade?.isSelected ?? false ? .green : .blue
@@ -31,11 +35,12 @@ class GradeTableViewCell: UITableViewCell {
         grade?.isSelected = !(grade?.isSelected ?? false)
         buttonTick?.backgroundColor = grade?.isSelected ?? false ? .green : .blue
         makeChangesOnSections()
+        closureGrade?()
     }
     
     @IBAction func buttonActionExpand(_ sender: UIButton) {
         grade?.isExpanded = !(grade?.isExpanded ?? false)
-        closureSection?(grade?.isExpanded ?? false)
+        closureGrade?()
     }
     
     private func makeChangesOnSections() {

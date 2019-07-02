@@ -17,7 +17,7 @@ class HeaderTableViewCell: UITableViewCell {
             configureView()
         }
     }
-    var closureSection:((Bool) -> ())?
+    var closureHeader:(() -> ())?
 
     
     private func configureView() {
@@ -32,10 +32,19 @@ class HeaderTableViewCell: UITableViewCell {
         school?.isSelected = !(school?.isSelected ?? false)
         buttonTick?.backgroundColor = school?.isSelected ?? false ? .green : .blue
         makeChangesOnSections()
+        closureHeader?()
+    }
+    
+    @IBAction func buttonActionExpanded(_ sender: UIButton) {
+        school?.isExpanded = !(school?.isExpanded ?? false)
+        closureHeader?()
     }
     
     private func makeChangesOnSections() {
-        school?.grades?.forEach { $0.isSelected = school?.isSelected }
+        school?.grades?.forEach({ (gradeObject) in
+            gradeObject.isSelected = school?.isSelected
+            gradeObject.sections?.forEach { $0.isSelected = gradeObject.isSelected }
+        })
     }
     
 }

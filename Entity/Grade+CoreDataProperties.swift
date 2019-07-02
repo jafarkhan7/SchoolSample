@@ -46,10 +46,6 @@ extension Grade {
         sectionObjects = sectionObjects?.sorted { $0.sectionName ?? "" < $1.sectionName ?? "" }
      return sectionObjects
     }
-    
-    func selectSection(isSelected: Bool) {
-        sections?.forEach { $0.isSelected = isSelected }
-    }
 }
 
 

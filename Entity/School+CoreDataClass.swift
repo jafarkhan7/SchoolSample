@@ -12,11 +12,7 @@ import CoreData
 
 
 public class School: NSManagedObject, Selectable, Expandable {
-    var isSelected: Bool? {
-        didSet {
-            selectGrades(isSelected: isSelected ?? false)
-        }
-    }
+    var isSelected: Bool? 
     
     var isExpanded: Bool?
     

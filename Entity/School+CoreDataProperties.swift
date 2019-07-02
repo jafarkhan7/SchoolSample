@@ -46,11 +46,4 @@ extension School {
          gradesObjects = gradesObjects?.sorted { $0.gradeName ?? "" < $1.gradeName ?? "" }
         return gradesObjects
     }
-    
-    func selectGrades(isSelected:Bool) {
-        grades?.forEach({ (grade) in
-            grade.isSelected = isSelected
-            
-        })
-    }
 }

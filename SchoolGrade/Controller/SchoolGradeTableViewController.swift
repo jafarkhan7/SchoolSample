@@ -29,7 +29,6 @@ class SchoolGradeTableViewController: UITableViewController {
         }
     }
     
-    @IBOutlet weak var labelHeader: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,47 +36,59 @@ class SchoolGradeTableViewController: UITableViewController {
         configureDataSource()
     }
     
-    @IBAction func actionButtonExpand(_ sender: UIButton) {
+    func configureTableUI () {
+        grades =  school?.isExpanded ?? false ? school?.grades : nil
         
-        school?.isExpanded = !(school?.isExpanded ?? false)
-        grades = (school?.isExpanded ?? false) ? school?.grades : nil
-
-    }
-    
-    
-    @IBAction func showAll(_ sender: UIButton) {
-        school?.isSelected = !(school?.isSelected ?? false)
-        sender.backgroundColor = (school?.isSelected ?? false) ? .green : .blue
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return grades?.count ?? 0
+        return (grades?.count ?? 0) + 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let grade = grades?[section]
+        if section > 0 {
+        let grade = grades?[section - 1]
         return grade?.isExpanded ?? false ? grade?.sections?.count ?? 0 : 0
+        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "SectionTableViewCell") as? SectionTableViewCell
-        tableViewCell?.section = grades?[indexPath.section].sections?[indexPath.row]
+        tableViewCell?.section = grades?[indexPath.section - 1].sections?[indexPath.row]
+        tableViewCell?.closureSection = { [weak self] in
+            self?.handleSelection()
+        }
         return tableViewCell ?? UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "GradeTableViewCell") as? GradeTableViewCell
-
-        tableViewCell?.grade = grades?[section]
-
-        tableViewCell?.closureSection = { [weak self] isExpanded in
-            self?.grades?[section].isExpanded = isExpanded
-            self?.tableView.reloadData()
+        
+        switch section {
+        case 0:
+            let headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as? HeaderTableViewCell
+            headerTableViewCell?.school = school
+            headerTableViewCell?.closureHeader = { [weak self] in
+                self?.configureTableUI()
+                self?.handleSelection()
+            }
+            
+            return headerTableViewCell
+        default:
+            let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "GradeTableViewCell") as? GradeTableViewCell
+            
+            tableViewCell?.grade = grades?[section - 1]
+            tableViewCell?.closureGrade = { [weak self] in
+                self?.handleSelection()
+            }
+            return tableViewCell
         }
-        return tableViewCell
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
@@ -89,17 +100,32 @@ class SchoolGradeTableViewController: UITableViewController {
     
 }
 
-fileprivate extension SchoolGradeTableViewController {
+private extension SchoolGradeTableViewController {
+    
+    func handleSelection() {
+        school?.grades?.forEach({ (gradeObject) in
+            let isSelectedSection = gradeObject.sections?.filter({ (sectionObject) -> Bool in
+                sectionObject.isSelected == true
+            })
+           gradeObject.isSelected = isSelectedSection?.count == gradeObject.sections?.count
+        })
+        
+        let isSelectedGrades = school?.grades?.filter({ (gradeObject) -> Bool in
+            gradeObject.isSelected == true
+        })
+        school?.isSelected = isSelectedGrades?.count == school?.grades?.count
+        
+        tableView.reloadData()
+        
+    }
     
     func configureDataSource() {
         guard let schoolObject = coreDataManager.fetch(School.self), schoolObject.count > 0 else {
            school =  createSchool()
-            
             return
         }
         
         school = schoolObject.first
-        labelHeader?.text = school?.schoolName ?? ""
     }
     
     func createSchool() -> School? {

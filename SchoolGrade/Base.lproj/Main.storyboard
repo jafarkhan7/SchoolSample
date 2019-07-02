@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="lDo-P2-Qt3">
+                        <view key="tableHeaderView" hidden="YES" contentMode="scaleToFill" id="lDo-P2-Qt3">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -39,16 +39,10 @@
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="actionButtonExpand:" destination="f23-ti-tKZ" eventType="touchUpInside" id="JgO-Pz-bFW"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6V-HO-gZd">
                                                 <rect key="frame" x="20" y="6" width="46" height="31.5"/>
                                                 <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="showAll:" destination="f23-ti-tKZ" eventType="touchUpInside" id="cJ0-h0-qoJ"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -155,15 +149,61 @@
                                     <outlet property="labelHeaderName" destination="BPp-M3-JME" id="9e5-Jb-Gy9"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderTableViewCell" id="gPM-Bt-inJ" customClass="HeaderTableViewCell" customModule="SchoolGrade" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="160" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gPM-Bt-inJ" id="7O6-v8-yJ8">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSU-qY-3Y9">
+                                            <rect key="frame" x="81" y="5" width="36.5" height="33.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqe-oA-gNQ" userLabel="ButtonSelection">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonActionExpanded:" destination="gPM-Bt-inJ" eventType="touchUpInside" id="wdA-qo-v8K"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMC-jR-zuk">
+                                            <rect key="frame" x="20" y="6" width="46" height="31.5"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="buttonActionSelected:" destination="gPM-Bt-inJ" eventType="touchUpInside" id="ZNx-NM-i7f"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Zqe-oA-gNQ" firstAttribute="top" secondItem="7O6-v8-yJ8" secondAttribute="top" id="9Ch-1j-7Hk"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QSU-qY-3Y9" secondAttribute="trailing" constant="20" id="PgH-Il-L82"/>
+                                        <constraint firstItem="QSU-qY-3Y9" firstAttribute="leading" secondItem="yMC-jR-zuk" secondAttribute="trailing" constant="15" id="agH-Bn-bMA"/>
+                                        <constraint firstItem="Zqe-oA-gNQ" firstAttribute="leading" secondItem="7O6-v8-yJ8" secondAttribute="leading" id="doY-D4-uP2"/>
+                                        <constraint firstItem="yMC-jR-zuk" firstAttribute="leading" secondItem="7O6-v8-yJ8" secondAttribute="leading" constant="20" id="f3y-f1-vwj"/>
+                                        <constraint firstAttribute="bottom" secondItem="yMC-jR-zuk" secondAttribute="bottom" constant="6" id="f8b-7N-srL"/>
+                                        <constraint firstItem="QSU-qY-3Y9" firstAttribute="top" secondItem="7O6-v8-yJ8" secondAttribute="top" constant="5" id="haF-ql-ViV"/>
+                                        <constraint firstItem="yMC-jR-zuk" firstAttribute="top" secondItem="7O6-v8-yJ8" secondAttribute="top" constant="6" id="kH7-pH-oSI"/>
+                                        <constraint firstAttribute="bottom" secondItem="QSU-qY-3Y9" secondAttribute="bottom" constant="5" id="mFK-fp-GpH"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zqe-oA-gNQ" secondAttribute="trailing" id="mmM-bW-SRu"/>
+                                        <constraint firstAttribute="bottom" secondItem="Zqe-oA-gNQ" secondAttribute="bottom" id="pis-In-wvd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="buttonTick" destination="yMC-jR-zuk" id="k05-dO-HfA"/>
+                                    <outlet property="labelHeaderName" destination="QSU-qY-3Y9" id="tKs-2E-mPT"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="f23-ti-tKZ" id="lvl-XR-t2D"/>
                             <outlet property="delegate" destination="f23-ti-tKZ" id="kZA-Ht-3fS"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="labelHeader" destination="pzy-aP-jjf" id="Onl-ZO-i0k"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BP-QH-TSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

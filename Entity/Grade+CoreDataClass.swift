@@ -14,11 +14,7 @@ import CoreData
 public class Grade: NSManagedObject, Selectable, Expandable {
     var isExpanded: Bool?
     
-    var isSelected: Bool? {
-        didSet {
-            selectSection(isSelected: isSelected ?? false)
-        }
-    }
+    var isSelected: Bool?
     
 
 }
