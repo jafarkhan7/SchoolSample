@@ -21,19 +21,13 @@ class GradeTableViewCell: UITableViewCell {
         }
     }
     var closureGrade:(() -> ())?
-
     
-    private func configureView() {
-        buttonTick?.backgroundColor = grade?.isSelected ?? false ? .green : .blue
-        labelHeaderName?.text = grade?.gradeName ?? ""
-    }
-    
+    @IBOutlet weak var imageViewArrow: UIImageView?
     @IBOutlet weak var labelHeaderName: UILabel?
     @IBOutlet weak var buttonTick: UIButton?
     
     @IBAction func buttonActionSelected(_ sender: UIButton) {
         grade?.isSelected = !(grade?.isSelected ?? false)
-        buttonTick?.backgroundColor = grade?.isSelected ?? false ? .green : .blue
         makeChangesOnSections()
         closureGrade?()
     }
@@ -42,9 +36,18 @@ class GradeTableViewCell: UITableViewCell {
         grade?.isExpanded = !(grade?.isExpanded ?? false)
         closureGrade?()
     }
+}
+
+private extension GradeTableViewCell {
     
-    private func makeChangesOnSections() {
+    func makeChangesOnSections() {
         grade?.sections?.forEach { $0.isSelected = grade?.isSelected }
     }
     
+    func configureView() {
+        labelHeaderName?.text = grade?.gradeName ?? ""
+        buttonTick?.isSelected = (grade?.isSelected ?? false)
+        imageViewArrow?.rotate(rotate: grade?.isExpanded ?? false ? .up : .down)
+        
+    }
 }

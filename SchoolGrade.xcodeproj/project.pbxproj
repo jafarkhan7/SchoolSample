@@ -23,6 +23,9 @@
 		0F8D8A0022CA1D9600684397 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D89FF22CA1D9600684397 /* HeaderTableViewCell.swift */; };
 		0F8D8A0222CA3A8300684397 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D8A0122CA3A8300684397 /* SectionTableViewCell.swift */; };
 		0F8D8A0622CA4B2A00684397 /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D8A0522CA4B2A00684397 /* GradeTableViewCell.swift */; };
+		0FAB097D22CB690400ED611F /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB097C22CB690400ED611F /* Protocols.swift */; };
+		0FAB098022CB812400ED611F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB097F22CB812400ED611F /* UIViewExtension.swift */; };
+		0FAB098322CB843A00ED611F /* UIResponderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB098222CB843A00ED611F /* UIResponderExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		0F8D89FF22CA1D9600684397 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0F8D8A0122CA3A8300684397 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
 		0F8D8A0522CA4B2A00684397 /* GradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
+		0FAB097C22CB690400ED611F /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		0FAB097F22CB812400ED611F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0FAB098222CB843A00ED611F /* UIResponderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				0F41B12222C9ED6A00261DDD /* AppDelegate.swift */,
+				0FAB098122CB812C00ED611F /* Extension */,
+				0FAB097E22CB691100ED611F /* Protocol */,
 				0F41B16222C9F4DE00261DDD /* Model */,
 				0F8D8A0322CA486F00684397 /* View */,
 				0F41B15522C9EDE000261DDD /* Controller */,
@@ -136,6 +144,23 @@
 				0F41B16322C9F50700261DDD /* CoreDataManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		0FAB097E22CB691100ED611F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0FAB097C22CB690400ED611F /* Protocols.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0FAB098122CB812C00ED611F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0FAB097F22CB812400ED611F /* UIViewExtension.swift */,
+				0FAB098222CB843A00ED611F /* UIResponderExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +234,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FAB098022CB812400ED611F /* UIViewExtension.swift in Sources */,
 				0F8D89FD22CA03A100684397 /* Grade+CoreDataClass.swift in Sources */,
+				0FAB098322CB843A00ED611F /* UIResponderExtension.swift in Sources */,
 				0F8D89FE22CA03A100684397 /* Grade+CoreDataProperties.swift in Sources */,
 				0F8D89F722C9FD3000684397 /* Section+CoreDataClass.swift in Sources */,
 				0F41B12B22C9ED6A00261DDD /* SchoolGrade.xcdatamodeld in Sources */,
@@ -218,6 +245,7 @@
 				0F41B12322C9ED6A00261DDD /* AppDelegate.swift in Sources */,
 				0F8D89F622C9FD3000684397 /* School+CoreDataProperties.swift in Sources */,
 				0F41B16422C9F50700261DDD /* CoreDataManager.swift in Sources */,
+				0FAB097D22CB690400ED611F /* Protocols.swift in Sources */,
 				0F8D8A0622CA4B2A00684397 /* GradeTableViewCell.swift in Sources */,
 				0F8D8A0222CA3A8300684397 /* SectionTableViewCell.swift in Sources */,
 				0F8D89F822C9FD3000684397 /* Section+CoreDataProperties.swift in Sources */,

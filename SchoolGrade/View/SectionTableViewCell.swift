@@ -22,16 +22,14 @@ class SectionTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonTick: UIButton?
 
     private func configureView() {
-        buttonTick?.backgroundColor = section?.isSelected ?? false ? .green : .blue
         labelHeaderName?.text = section?.sectionName ?? ""
-        
+        buttonTick?.isSelected = section?.isSelected ?? false
+
     }
     
     @IBAction func buttonActionSelected(_ sender: UIButton) {
         section?.isSelected = !(section?.isSelected ?? false)
-        buttonTick?.backgroundColor = section?.isSelected ?? false ? .green : .blue
         closureSection?()
-        
     }
     
 }

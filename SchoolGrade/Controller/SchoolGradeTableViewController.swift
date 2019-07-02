@@ -36,9 +36,8 @@ class SchoolGradeTableViewController: UITableViewController {
         configureDataSource()
     }
     
-    func configureTableUI () {
+    func configureGradeVisbilty () {
         grades =  school?.isExpanded ?? false ? school?.grades : nil
-        
         tableView.reloadData()
     }
     
@@ -57,7 +56,7 @@ class SchoolGradeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "SectionTableViewCell") as? SectionTableViewCell
+        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: SectionTableViewCell.identifier) as? SectionTableViewCell
         tableViewCell?.section = grades?[indexPath.section - 1].sections?[indexPath.row]
         tableViewCell?.closureSection = { [weak self] in
             self?.handleSelection()
@@ -66,114 +65,71 @@ class SchoolGradeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         switch section {
-        case 0:
-            let headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as? HeaderTableViewCell
-            headerTableViewCell?.school = school
-            headerTableViewCell?.closureHeader = { [weak self] in
-                self?.configureTableUI()
-                self?.handleSelection()
-            }
-            
-            return headerTableViewCell
-        default:
-            let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "GradeTableViewCell") as? GradeTableViewCell
-            
-            tableViewCell?.grade = grades?[section - 1]
-            tableViewCell?.closureGrade = { [weak self] in
-                self?.handleSelection()
-            }
-            return tableViewCell
+        case 0:  return configureSchoolHeader()
+        default: return configureGradeHeader(section: section - 1)
         }
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did Select")
-    }
-    
 }
 
 private extension SchoolGradeTableViewController {
     
+    //School Header
+     func configureSchoolHeader() -> UIView? {
+        
+        let headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.identifier) as? HeaderTableViewCell
+        headerTableViewCell?.school = school
+        headerTableViewCell?.closureHeader = { [weak self] in
+            self?.configureGradeVisbilty()
+            self?.handleSelection()
+        }
+        
+        return headerTableViewCell
+    }
+    
+    //Grade Header
+     func configureGradeHeader(section: Int) -> UIView? {
+        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: GradeTableViewCell.identifier) as? GradeTableViewCell
+        
+        tableViewCell?.grade = grades?[section]
+        tableViewCell?.closureGrade = { [weak self] in
+            self?.handleSelection()
+        }
+        return tableViewCell
+    }
+    
+    //Handling the overall selection
     func handleSelection() {
         school?.grades?.forEach({ (gradeObject) in
             let isSelectedSection = gradeObject.sections?.filter({ (sectionObject) -> Bool in
                 sectionObject.isSelected == true
             })
+            
+            //Selecting the grade by it's section selection
            gradeObject.isSelected = isSelectedSection?.count == gradeObject.sections?.count
         })
         
         let isSelectedGrades = school?.grades?.filter({ (gradeObject) -> Bool in
             gradeObject.isSelected == true
         })
+        
+        //Selecting the school by it's grade selection
         school?.isSelected = isSelectedGrades?.count == school?.grades?.count
-        
         tableView.reloadData()
-        
     }
     
     func configureDataSource() {
+        //Create the school data if school data is unavailable
         guard let schoolObject = coreDataManager.fetch(School.self), schoolObject.count > 0 else {
-           school =  createSchool()
+           school =  School.createSchool()
             return
         }
-        
         school = schoolObject.first
     }
-    
-    func createSchool() -> School? {
-        let schoolDict = ["Schools": [["name": "ALL", "grades": ["Grade1": ["A", "B"], "Grade2": ["A", "B"]]]]]
-        guard let schoolObjects =  schoolDict["Schools"] else {
-            return nil;
-        }
-        let schoolObject = schoolObjects.map { (schoolObject) -> School in
-            let school = School(context: coreDataManager.context)
-            school.schoolName = (schoolObject["name"] as? String) ?? ""
-            
-            if let gradeDict = schoolObject["grades"] as? [String:[String]] {
-                let grades =  initializeGrade(gradeDict: gradeDict)
-                school.gradeRelationShip = NSSet(array: grades)
-            }
-            
-            return school
-        }
-        print(schoolObject)
-        coreDataManager.saveContext()
-        return schoolObject.first
-    }
-    
-    
-    func initializeGrade(gradeDict:[String:[String]]) -> [Grade] {
-        let grades = gradeDict.map { (dict) -> Grade in
-            let grade = Grade(context: coreDataManager.context)
-            grade.gradeName = dict.key
-            let sections =  initializeSection(sections: dict.value)
-            grade.sectionRelation = NSSet(array: sections)
-            
-            return grade
-        }
-        return grades
-        
-    }
-    
-    func initializeSection(sections:[String]) -> [Section] {
-        let sections = sections.map({ (sectionName) -> Section in
-            let gradeSection = Section(context: coreDataManager.context)
-            gradeSection.sectionName = sectionName
-            return gradeSection
-        })
-        
-        return sections
-    }
-    
-    
 }
 
 

@@ -47,12 +47,3 @@ extension Grade {
      return sectionObjects
     }
 }
-
-
-protocol Selectable {
-    var isSelected: Bool? { get set }    
-}
-
-protocol Expandable {
-    var isExpanded: Bool? { get set }
-}
